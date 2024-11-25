@@ -59,7 +59,8 @@
 				<c:forEach items = "${kategorije }" var = "k">
 					<option value = "${k.naziv }"> ${k.naziv }</option>
 				</c:forEach>		
-			</select>	
+			</select>
+			
 		</c:when>
 		
 		<c:otherwise>
@@ -67,6 +68,14 @@
 		</c:otherwise>
 		
 	</c:choose><br>
+	
+	
+	<c:if test="${ulogovan.uloga.idkorisnik == 2 }">
+		<form action="">
+		
+			<input type = "submit" value = "Statistika foruma">
+		</form>
+	</c:if>
 	
 	<br>
 	
