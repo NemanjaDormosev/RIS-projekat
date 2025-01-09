@@ -14,4 +14,9 @@ public interface PorukaRepository extends JpaRepository<Poruka, Integer> {
 	
 	@Query("select count(p) from Poruka p where p.korisnik1.idkorisnik = :idkorisnik or p.korisnik2.idkorisnik = :idkorisnik")
 	int pronadjiSvePoruke(@Param("idkorisnik") Integer idKorisnik);
+	
+	@Query("select p from Poruka p where (p.korisnik1.idkorisnik = :prviKorisnik and p.korisnik2.idkorisnik = :drugiKorisnik) or (p.korisnik1.idkorisnik = :drugiKorisnik and p.korisnik2.idkorisnik = :prviKorisnik) order by datum asc, vreme asc")
+	List<Poruka> pronadjiSveRazmenjenePoruke(@Param("prviKorisnik") Integer idkorisnik, @Param("drugiKorisnik") Integer idkorisnik2);
+	
+	
 }

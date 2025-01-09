@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+header {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    text-align: right;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.content {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.welcome-text {
+	font-weight: bold;
+	font-size: 25px;
+}
+
+.opcije {
+	position: relative;
+	right: -475px;
+}
+
+.opcije a {
+	margin-right: 10px;
+}
+
+.status {
+	position: relative;
+	top: 7px;
+	right: 25px;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header a:hover {
+    text-decoration: underline;
+}

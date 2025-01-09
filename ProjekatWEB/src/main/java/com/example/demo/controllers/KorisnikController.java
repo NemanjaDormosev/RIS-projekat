@@ -1,8 +1,12 @@
 package com.example.demo.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.security.CustomUserDetails;
 import com.example.demo.services.KorisnikService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -68,10 +73,28 @@ public class KorisnikController {
 		return k;
 	}
 	
+	@ModelAttribute("danasnjiDatum")
+	public String getDanasnjiDatum() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String danasnjiDatum = sdf.format(new Date());
+		return danasnjiDatum;
+	}
+	
 	@GetMapping("getPocetna")
 	public String getPocetna() {
+//		ks.hashAllPasswords();
 		return "Pocetna";
 	}
+	
+	@GetMapping("getPocetnaUlogovan")
+	public String getPocetnaUlogovan(HttpServletRequest request) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Korisnik k = ((CustomUserDetails) authentication.getPrincipal()).getK();
+		request.getSession().setAttribute("ulogovan", k);
+		
+		return "Pocetna";
+	}
+	
 	
 //	@RequestMapping(value = "novaUloga", method = RequestMethod.POST)
 //	public String dodajUlogu(Model m) {

@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Forum</title>
+<link rel="stylesheet" href="/Forum/css/general.css" />
+<link rel="stylesheet" href="/Forum/css/loginpage.css" />
 </head>
 <body>
-	
+
 	<!-- 
 		<form action = "/Forum/korisnik/novaUloga" method = "post">
 			
@@ -29,23 +31,42 @@
 
 	 -->
 
-   	<form action = "/Forum/korisnik/registracija" method = "post">
-	
-		Ime: <input type ="text" name = "ime"><br>
-		Prezime: <input type ="text" name = "prezime"><br>
-		Godine: <input type ="text" name = "godine"><br>
-		Email: <input type = "text" name = "email"><br>
-		Username: <input type ="text" name = "username"><br>
-		Password: <input type = "text" name = "password"><br>
-		
-		<input type="submit" value="Registruj se">	
-	
-	</form>
-	
-	<c:if test = "${!empty message }">${message } </c:if>
+	<div class="form-input">
 
+		<form action="/Forum/korisnik/registracija" method="post">
+			<table>
+				<tr>
+					<td>Ime:</td>
+					<td><input type="text" name="ime"></td>
+				</tr>
+				<tr>
+					<td>Prezime:</td>
+					<td><input type="text" name="prezime"></td>
+				</tr>
+				<tr>
+					<td>Godine:</td>
+					<td><input type="text" name="godine"></td>
+				</tr>
+				<tr>
+					<td>Email:</td>
+					<td><input type="text" name="email"></td>
+				</tr>
+				<tr>
+					<td>Username:</td>
+					<td><input type="text" name="username"></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="password" name="password"></td>
+				</tr>
 
-</body>
+			</table>
+
+			<input type="submit" value="Registruj se">
+		</form>
+
+		<c:if test="${!empty message }">${message } </c:if>
+	</div>
 
 </body>
 </html>

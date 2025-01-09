@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+body {
+	font-family: Arial, sans-serif;
+	background-color: rgb(220, 220, 220);
+	color: rgb(50, 50, 50);
+	margin-top: 95px;
+	margin-left: 20px;
+	padding: 20;
+
+}
+
+h2, h4 {
+	text-align: center;
+}
+
+input[type=submit], button {
+	padding: 10px 20px;
+	background-color: red;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	height: 35px;
+}
+
+input[type="date"], input[type="text"], input[type="password"] {
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: #fff;
+	font-size: 16px;
+	color: #333;
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+
+button a {
+	text-decoration: none;
+	color: white;
+}
+
+button a:hover {
+	text-decoration: none;
+}
+
+input[type=submit]:hover, button:hover {
+	background-color: black;
+}
+
+a {
+	text-decoration: none;
+	color: red;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+select {
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: white;
+	font-size: 16px;
+	color: #333;
+	cursor: pointer;
+}
+
+select:focus, input[type="date"]:focus, input[type="text"]:focus, input[type="password"]:focus
+	{
+	border-color: red;
+	box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+	outline: none;
+}
+
+option {
+	background-color: white;
+	color: #333;
+	padding: 10px;
+}
+
+/* tabela */
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 20px 0;
+	background-color: white;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+	background-color: #3498db;
+	color: white;
+}
+
+thead th {
+	padding: 10px;
+	text-align: left;
+}
+
+tbody td {
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+tr:hover {
+	background-color: #f1f1f1;
+}
+
+th, td {
+	padding: 15px;
+	text-align: left;
+}

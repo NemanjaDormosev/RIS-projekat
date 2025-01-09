@@ -4,16 +4,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.services.ProfilService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import model.Kategorija;
 import model.Korisnik;
-import model.Poruka;
+import model.Objava;
 
 @Controller
 @RequestMapping("/profil/")
@@ -59,6 +61,18 @@ public class ProfilController {
 		Korisnik k = (Korisnik) request.getSession().getAttribute("ulogovan");
 		Integer idKorisnik = k.getIdkorisnik();
 		return ps.getKategorije(idKorisnik);
+	}
+	
+	@GetMapping("getObjaveZaKategoriju")
+	public String getObjaveZaKategoriju(@RequestParam("kategorija") Integer idkategorija, HttpServletRequest request) {
+		
+		List<Objava> listaObjava = ps.getObjaveZaKategoriju(idkategorija);
+		
+		request.getSession().setAttribute("kategorija", ps.getKategorija(idkategorija));
+		request.setAttribute("objave", listaObjava);
+		
+		return "PrikazKategorije";
+		
 	}
 		
 	@GetMapping("getProfil")

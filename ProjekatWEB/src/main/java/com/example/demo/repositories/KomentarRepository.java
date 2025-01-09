@@ -11,5 +11,6 @@ import model.Komentar;
 public interface KomentarRepository extends JpaRepository<Komentar, Integer> {
 	
 	int countByKorisnik_idkorisnik(Integer idKorisnik);
+	List<Komentar> findByObjava_idobjava(Integer idObjava);
 
 }

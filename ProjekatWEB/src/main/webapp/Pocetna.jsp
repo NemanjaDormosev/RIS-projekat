@@ -5,27 +5,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Forum</title>
+<link rel="stylesheet" href="/Forum/css/general.css" />
+<link rel="stylesheet" href="/Forum/css/pocetna.css" />
 </head>
 <body>
 	
-	<c:if test = "${empty ulogovan }">
-		<a href = "/Forum/UnosKorisnika.jsp">Registracija</a>
-		<a href = "/Forum/Logovanje.jsp">Logovanje</a><br>
-	</c:if>
-	
-	<c:if test = "${!empty ulogovan }"> Prijavljeni ste kao: <a href = "/Forum/profil/getProfil" > ${ulogovan.username } </a><br>
-		<a href = "/Forum/korisnik/odjavljivanje">Odjavi se</a>
-	</c:if><br>
-	
-	<br>
+	<jsp:include page="header.jsp" />
 	
 	<!-- ovde ide lista topika iz baze -->
 	
-	<h3>Lista topika</h3>
+	<h2>Lista topika</h2>
 	
 	<c:if test = "${!empty ulogovan and ulogovan.uloga.iduloga == 2}">
-		<a href = "">Dodaj novi topik</a>
+		<button><a href = "/Forum/UnosTopika.jsp">Dodaj novi topik</a></button> <br>
 	</c:if> <br>
 	
 	<c:if test ="${!empty topiks }"> 
@@ -35,13 +28,23 @@
 				<th>Datum kreiranja</th>
 				<th>Vreme kreiranja</th>
 				<th>Kreiran od strane</th>
+				<th></th>
 			</tr>
 			<c:forEach items = "${topiks }" var = "t">
 				<tr>
-					<td><a href ="">${t.naziv } </a></td>
+					<td><a href ="/Forum/objava/getStranica?idTopik=${t.idtopik}">${t.naziv } </a></td>
 					<td>${t.datum }</td>
 					<td>${t.vreme } </td>
 					<td>${t.korisnik.username}</td>
+					<td>
+						<c:if test = "${!empty ulogovan and ulogovan.uloga.iduloga == 2}">
+							<form action="/Forum/izvestaj/izvestajZaTopik">
+								
+								<input type = "hidden" name = "idtopik" value = "${t.idtopik}">
+								<input type = "submit" value = "Generisi izvestaj">
+							</form>
+						</c:if>		
+					</td>
 				</tr>
 			</c:forEach>
 		
@@ -49,9 +52,15 @@
 	
 	</c:if> <br>
 	
+	<h4>
 	
-	Trenutni datum: [date]<br>
-	Najaktivniji danasnjeg dana: [korisnik]
+		Trenutni datum: ${danasnjiDatum }<br>
+		Najaktivniji danasnjeg dana: 
+		<c:if test = "${!empty najaktivnijiDanas }">
+			${najaktivnijiDanas.username }
+		</c:if>
+	
+	</h4>
 	
 	
 </body>
