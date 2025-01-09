@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,7 +23,7 @@ public class Kategorija implements Serializable {
 	private String naziv;
 
 	//bi-directional many-to-many association to Objava
-	@ManyToMany(mappedBy="kategorijas")
+	@ManyToMany(mappedBy="kategorijas", fetch = FetchType.EAGER)
 	private List<Objava> objavas;
 
 	//bi-directional many-to-one association to Korisnik
@@ -29,6 +31,7 @@ public class Kategorija implements Serializable {
 	private Korisnik korisnik;
 
 	public Kategorija() {
+		this.objavas = new ArrayList<Objava>();
 	}
 
 	public int getIdkategorija() {

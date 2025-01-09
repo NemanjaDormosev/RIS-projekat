@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import jakarta.persistence.*;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,13 +23,15 @@ public class Objava implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	private Date datum;
+	
+	private String naslov;
 
 	private String sadrzaj;
 
 	private Time vreme;
 
 	//bi-directional many-to-many association to Kategorija
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.ALL })
 	@JoinTable(
 		name="imaobjavu"
 		, joinColumns={
@@ -41,7 +44,7 @@ public class Objava implements Serializable {
 	private List<Kategorija> kategorijas;
 
 	//bi-directional many-to-one association to Komentar
-	@OneToMany(mappedBy="objava")
+	@OneToMany(mappedBy="objava", cascade = CascadeType.ALL)
 	private List<Komentar> komentars;
 
 	//bi-directional many-to-one association to Korisnik
@@ -53,6 +56,7 @@ public class Objava implements Serializable {
 	private Topik topik;
 
 	public Objava() {
+		this.kategorijas = new ArrayList<Kategorija>();
 	}
 
 	public int getIdobjava() {
@@ -131,6 +135,14 @@ public class Objava implements Serializable {
 
 	public void setTopik(Topik topik) {
 		this.topik = topik;
+	}
+
+	public String getNaslov() {
+		return naslov;
+	}
+
+	public void setNaslov(String naslov) {
+		this.naslov = naslov;
 	}
 
 }
